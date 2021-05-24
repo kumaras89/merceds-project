@@ -1,0 +1,21 @@
+spring:
+  cache:
+    redis.time-to-live: 86400000
+  cloud:
+    stream:
+      default-binder: kafka
+      kafka:
+        binder:
+          brokers:
+            - localhost:9092
+      bindings:
+        fuel-cost-request:
+          binder: kafka
+          destination: fuel-cost-request
+          group: input-group-1
+          content-type: application/json
+        fuel-cost-processed:
+          binder: kafka
+          destination: fuel-processed
+          group: output-group-1
+          content-type: application/json
